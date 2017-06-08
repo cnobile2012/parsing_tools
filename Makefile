@@ -49,8 +49,6 @@ clean	:
 	$(shell cleanDirs.sh clean)
 	@rm -rf *.egg-info
 	@rm -rf dist
-	#@rm -rf python-forensics-1.0
 
 clobber	: clean
 	@(cd $(DOCS_DIR); make clobber)
-	@rm logs/*.log
