@@ -2,9 +2,11 @@
 Python Utils
 ************
 
-This repository contains multiple small projects each of which may have an
-individual pip install associated with it. I see no reason to create different
-repositories for each one though different pip installs may be useful.
+This repository contains multiple small projects each of which can be used
+separately.
+
+This would be a great package to use when creating your own custom Django
+REST Framework renderers and parsers based on a custom MIME types.
 
 Current Projects
 ================
@@ -19,7 +21,6 @@ match from an `Accept` header from a list of available mime types.
 xml2dict
 --------
 
-This tool will parse any XML document into a dict. The dict becomes very
-verbose since it will indicate any attributes, elements and namespaces used
-in the XML document.
-
+This tool should be able to parse any XML document into Python objects. The
+output will become very verbose since it will include all attributes,
+elements and namespaces found in the XML document.
