@@ -1,17 +1,27 @@
+# -*- coding: utf-8 -*-
 #
-# Convert XML to a Python dict.
+# xml2dict/xml2dict.py
 #
-# By Carl J. Nobile
-# carl.nobile@gmail.com
+# See MIT License file.
 #
+"""
+Convert XML to a Python dict.
+
+"""
+__docformat__ = "restructuredtext en"
+__author__ = 'Carl J. Nobile'
+__email__ = 'carl.nobile@gmail.com'
+__license__ = 'MIT License'
+__credits__ = ''
+
+__all__ = ('__docformat__', '__author__', '__email__', '__license__',
+           '__credits__', 'XML2Dict',)
 
 import io
 import re
 import six
 import logging
 import defusedxml.ElementTree as ET
-
-__all__ = ('XML2Dict',)
 
 
 class XML2Dict(object):

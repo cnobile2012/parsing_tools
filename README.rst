@@ -16,7 +16,7 @@ This tool would be used to parse HTTP headers to derive the 'best fit' mime
 type. It handles suffix and quality parsing and can be used to find the best
 match from an `Accept` header from a list of available mime types.
 
-xml2Dict
+xml2dict
 --------
 
 This tool will parse any XML document into a dict. The dict becomes very

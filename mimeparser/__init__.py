@@ -7,10 +7,11 @@ MIME Parser package
 """
 __docformat__ = "restructuredtext en"
 
-__all__ = ('__version__', 'MIMEParser',)
+__all__ = ('__version__', '__author__', '__email__', '__license__',
+           '__credits__', 'MIMEParser',)
 
 
-from mimeparser import MIMEParser
+from mimeparser import *
 
 
 __version_info__ = {
@@ -34,8 +35,9 @@ def get_version(short=False):
     result = '.'.join(vers)
 
     if __version_info__.get('releaselevel') != 'final' and not short:
-        result += "{}{:d}".format(__version_info__.get('releaselevel', 'a')[0],
-                                  __version_info__.get('serial'))
+        result += "{}{:d}".format(
+            __version_info__.get('releaselevel', 'a')[0],
+            __version_info__.get('serial'))
 
     return result
 

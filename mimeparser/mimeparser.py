@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 #
-# mimeparser.py
+# mimeparser/mimeparser.py
+#
+# See MIT License file.
 #
 """
-MIME-Type Parser
+Parse MIME types that are usually found in HTTP headers.
 
 Parsing `Accept` headers correctly has become very important with the
 ubiquitus use of RESTful web services because, versioning of the service
@@ -12,8 +14,8 @@ is often defined in the mine type.
 For reference see the following RFCs:
 
 https://tools.ietf.org/html/rfc4288#section-3.2 (Vendor spec)
-https://tools.ietf.org/html/rfc6839#section-3.1 (Suffix spec)
 https://tools.ietf.org/html/rfc7231#section-5.3.1 (quality spec)
+https://tools.ietf.org/html/rfc6839 (Suffix spec)
 
 The basic idea of this code I got from Joe Gregorio,
 https://github.com/jcgregorio/mimeparse
@@ -25,14 +27,15 @@ Entry point:
  - parse_mime() -- Returns a parsed mime type into it's parts.
 """
 __docformat__ = "restructuredtext en"
-
-from decimal import *
-
-__version__ = '0.1.5'
 __author__ = 'Carl J. Nobile'
 __email__ = 'carl.nobile@gmail.com'
 __license__ = 'MIT License'
 __credits__ = ''
+
+__all__ = ('__docformat__', '__author__', '__email__', '__license__',
+           '__credits__', 'MIMEParser',)
+
+from decimal import *
 
 
 class MIMEParser(object):
