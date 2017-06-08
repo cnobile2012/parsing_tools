@@ -7,7 +7,7 @@ README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='python-tools',
+    name='parsing-tools',
     version='1.0.0',
     packages=['mimeparser', 'xml2dict',],
     scripts=['bin/walker.py',],
@@ -21,8 +21,7 @@ setup(
     author='Carl J. Nobile',
     author_email='carl.nobile@gmail.com',
     classifiers=[
-        'Environment :: Command Line',
-        'Intended Audience :: Web and other deveopment.',
+        'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
@@ -30,7 +29,6 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
-        'Topic :: Forensics :: Data Recovery',
         ],
     install_requires=[
         'defusedxml',

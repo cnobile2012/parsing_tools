@@ -19,7 +19,7 @@ tar	: clean
 	@(cd ..; tar -czvf $(PACKAGE_DIR).tar.gz --exclude=".git" \
           --exclude="dist/*" $(PACKAGE_DIR))
 
-api-docs: clean
+docs: clean
 	@(cd $(DOCS_DIR); make)
 
 .PHONY	: build
