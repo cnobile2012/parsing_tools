@@ -29,7 +29,7 @@ setup(
                  'HTTP headers plus a utility to parse XML documents into '
                  'Python objects.'),
     long_description=README,
-    url='https://github.com/cnobile2012/python_tools/',
+    url='https://github.com/cnobile2012/parsing_tools/',
     author='Carl J. Nobile',
     author_email='carl.nobile@gmail.com',
     classifiers=[
