@@ -10,8 +10,7 @@ __docformat__ = "restructuredtext en"
 __all__ = ('__version__', '__author__', '__email__', '__license__',
            '__credits__', 'MIMEParser',)
 
-
-from mimeparser import *
+from .mimeparser import *
 
 
 __version_info__ = {

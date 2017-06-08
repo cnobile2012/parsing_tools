@@ -32,4 +32,8 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Topic :: Forensics :: Data Recovery',
         ],
+    install_requires=[
+        'defusedxml',
+        'six',
+        ],
     )

@@ -153,8 +153,8 @@ if __name__ == '__main__':
       <env>dsxdev.example.com</env>
     </env-list>
     <owner-list count="2">
-      <owner>chsteven</owner>
-      <owner>james</owner>
+      <owner>joeblow</owner>
+      <owner>jhamilton</owner>
     </owner-list>
   </user>
 </response>

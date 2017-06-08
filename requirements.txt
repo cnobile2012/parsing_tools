@@ -3,9 +3,7 @@
 # $ pip install -r requirments.txt
 #
 
-# Six Python 2 to 3 utils
-six
-
-# Timezone information
-pytz
+defusedxml
 ipython
+pytz
+six
