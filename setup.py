@@ -23,7 +23,6 @@ setup(
     name='parsing-tools',
     version=version(),
     packages=['mimeparser', 'xml2dict',],
-    scripts=['bin/walker.py',],
     include_package_data=True,
     license='MIT License',
     description=('A set of utilities to help parse mime types found in '
