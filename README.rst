@@ -1,6 +1,6 @@
-************
-Python Utils
-************
+*************
+Parsing Tools
+*************
 
 This repository contains multiple small projects each of which can be used
 separately.

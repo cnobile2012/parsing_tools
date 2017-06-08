@@ -1,9 +1,11 @@
 #
 # Development by Carl J. Nobile
 #
+include include.mk
 
 PREFIX		= $(shell pwd)
-PACKAGE_DIR	= $(shell echo $${PWD\#\#*/})
+BASE_DIR        = $(shell echo $${PWD\#\#*/})
+PACKAGE_DIR     = $(BASE_DIR)-$(VERSION)
 DOCS_DIR	= $(PREFIX)/docs
 TODAY		= $(shell date +"%Y-%m-%d_%H%M")
 RM_REGEX	= '(^.*.pyc$$)|(^.*.wsgic$$)|(^.*~$$)|(.*\#$$)|(^.*,cover$$)'
@@ -23,7 +25,7 @@ docs: clean
 	@(cd $(DOCS_DIR); make)
 
 .PHONY	: build
-build	: clean
+build	: clobber
 	python setup.py sdist
 
 .PHONY	: upload
