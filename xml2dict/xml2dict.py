@@ -141,16 +141,16 @@ if __name__ == '__main__':
         profilepath=""
         loginshell=""
         unixhomedirectory=""
-        env="dev.cisco.com"
+        env="dev.example.com"
         status="enabled"
         passwordexpires="2015-10-21T21:16:14Z"
         passwordlastset="2015-04-24T21:16:14Z"
-        dn="CN=test-root.gen,OU=Generics,OU=Cisco Users,DC=dev,DC=cisco,DC=com"
-        upn="test-root.gen@dev.cisco.com"
-        url="https://ds-api.cisco.com/DS/v1/dev.cisco.com/User/test-root.gen">
+        dn="CN=test-root.gen,OU=Generics,OU=Example Users,DC=dev,DC=example,DC=com"
+        upn="test-root.gen@dev.example.com"
+        url="https://ds-api.example.com/DS/v1/dev.example.com/User/test-root.gen">
     <env-list count="2">
-      <env>dev.cisco.com</env>
-      <env>dsxdev.cisco.com</env>
+      <env>dev.example.com</env>
+      <env>dsxdev.example.com</env>
     </env-list>
     <owner-list count="2">
       <owner>chsteven</owner>
