@@ -27,15 +27,9 @@ Entry point:
  - parse_mime() -- Returns a parsed mime type into it's parts.
 """
 __docformat__ = "restructuredtext en"
-__author__ = 'Carl J. Nobile'
-__email__ = 'carl.nobile@gmail.com'
-__license__ = 'MIT License'
-__credits__ = ''
 
-__all__ = ('__docformat__', '__author__', '__email__', '__license__',
-           '__credits__', 'MIMEParser',)
 
-from decimal import *
+from decimal import Decimal, InvalidOperation, getcontext
 
 
 class MIMEParser(object):
