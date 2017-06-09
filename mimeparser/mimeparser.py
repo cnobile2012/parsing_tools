@@ -113,8 +113,15 @@ class MIMEParser(object):
             full_type = '*/*'
 
         type, sep, subtype = full_type.partition('/')
-        subtype, sep, suffix = subtype.rpartition('+')
-        return type.strip(), subtype.strip(), suffix.strip(), params
+
+        if '+' in subtype:
+            idx = subtype.rfind('+')
+            suffix = subtype[idx+1:].strip()
+            subtype = subtype[:idx]
+        else:
+            suffix = ''
+
+        return type.strip(), subtype.strip(), suffix, params
 
     def __fitness_and_quality(self, preferred_mtype, ranges):
         """
