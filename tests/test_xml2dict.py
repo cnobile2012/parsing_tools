@@ -3,6 +3,7 @@
 # tests/test_xml2dict.py
 #
 
+import io
 import unittest
 import logging
 
@@ -24,7 +25,7 @@ class TestXML2Dict(unittest.TestCase):
         level = logging.ERROR
         x2d = XML2Dict(level=level)
 
-        with open('tests/FATCA-FFILIST-1.0.xsd', 'r') as f:
+        with io.open('tests/FATCA-FFILIST-1.0.xsd', 'r') as f:
             # Test with file object
             data = x2d.parse(f)
             log = logging.getLogger()
@@ -55,7 +56,7 @@ class TestXML2Dict(unittest.TestCase):
         """
         x2d = XML2Dict()
 
-        with open('tests/simple.xml', 'r') as f:
+        with io.open('tests/simple.xml', 'r') as f:
             data = x2d.parse(f)
             msg = "data: {}".format(data)
             self.assertTrue(isinstance(data[0].get('attrib'), dict), msg)
@@ -67,7 +68,7 @@ class TestXML2Dict(unittest.TestCase):
         """
         x2d = XML2Dict()
 
-        with open('tests/FATCA-FFILIST-1.0.xsd', 'r') as f:
+        with io.open('tests/FATCA-FFILIST-1.0.xsd', 'r') as f:
             # Test with file object
             data = x2d.parse(f)
             msg = "data: {}".format(data)

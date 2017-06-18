@@ -26,8 +26,9 @@ class TestMIMEParser(unittest.TestCase):
         result = self.mp.parse_mime(mime)
         options = ';'.join(["{}={}".format(x, y)
                             for x, y in result[3].items()])
+        sep = ';' if options != '' else ''
         found_mime = "{}/{}+{}{}{}".format(
-            *result[:3], ';' if options else '', options)
+            result[0], result[1], result[2], sep, options)
         msg = "Found mime: {}, should be: {}".format(found_mime, mime)
         self.assertEqual(found_mime, mime, msg)
 
