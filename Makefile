@@ -51,7 +51,8 @@ install-stg:
 .PHONY	: coverage
 coverage: clean
 	@rm -rf $(DOCS_DIR)/htmlcov
-	@nosetests --with-coverage --cover-erase --nocapture
+	@nosetests --with-coverage --cover-erase --nocapture \
+                   --cover-package=mimeparser --cover-package=xml2dict
 	@coverage html
 
 #----------------------------------------------------------------------
