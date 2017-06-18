@@ -1,9 +1,11 @@
 # PIP requirements
 #
-# $ pip install -r requirments.txt
+# $ pip install -r requirements.txt
 #
 
 defusedxml
 ipython
 pytz
 six
+coverage
+nose

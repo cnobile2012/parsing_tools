@@ -18,8 +18,8 @@ from .xml2dict import XML2Dict
 
 __version_info__ = {
     'major': 1,
-    'minor': 0,
-    'patch': 1,
+    'minor': 1,
+    'patch': 0,
     'releaselevel': 'final',
     'serial': 1
     }
@@ -32,12 +32,12 @@ def _get_version(short=False):
     vers.append("{minor:d}".format(**__version_info__))
 
     if __version_info__.get('patch', 0):
-        vers.append("{patch:d}".format(**__version_info__))
+        vers.append("{patch:d}".format(**__version_info__)) # pragma: no cover
 
     result = '.'.join(vers)
 
     if __version_info__.get('releaselevel') != 'final' and not short:
-        result += "{}{:d}".format(
+        result += "{}{:d}".format( # pragma: no cover
             __version_info__.get('releaselevel', 'a')[0],
             __version_info__.get('serial'))
 

@@ -48,6 +48,12 @@ install-prd:
 install-stg:
 	pip install $(PIP_ARGS) -r requirements.txt
 
+.PHONY	: coverage
+coverage: clean
+	@rm -rf $(DOCS_DIR)/htmlcov
+	@nosetests --with-coverage --cover-erase --nocapture
+	@coverage html
+
 #----------------------------------------------------------------------
 
 clean	:
@@ -56,3 +62,4 @@ clean	:
 clobber	: clean
 	@rm -rf *.egg-info
 	@rm -rf dist
+	@rm -rf $(DOCS_DIR)/htmlcov

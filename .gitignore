@@ -8,6 +8,7 @@
 .~lock.*
 logs/*.log*
 old
+docs/htmlcov
 
 # C extensions
 *.so

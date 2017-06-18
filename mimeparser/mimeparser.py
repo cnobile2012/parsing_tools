@@ -9,11 +9,12 @@ Parse MIME types that are usually found in HTTP headers.
 
 Parsing `Accept` headers correctly has become very important with the
 ubiquitus use of RESTful web services because, versioning of the service
-is often defined in the mine type.
+is often defined in the MIME type.
 
 For reference see the following RFCs:
 
 https://tools.ietf.org/html/rfc4288#section-3.2 (Vendor spec)
+https://tools.ietf.org/html/rfc7231#section-3.1.1.1 (Media Type)
 https://tools.ietf.org/html/rfc7231#section-5.3.1 (quality spec)
 https://tools.ietf.org/html/rfc6839 (Suffix spec)
 
@@ -21,21 +22,21 @@ The basic idea of this code I got from Joe Gregorio,
 https://github.com/jcgregorio/mimeparse
 
 Entry point:
- - best_match() -- Primary method to find the mime type that would be
-                   needed to find the closest match to the available mime
-                   types.
+ - best_match() -- Primary method to find the mime type derived from the
+                   closest match to the available mime types.
  - parse_mime() -- Returns a parsed mime type into it's parts.
 """
 __docformat__ = "restructuredtext en"
 
-
+from collections import OrderedDict
 from decimal import Decimal, InvalidOperation, getcontext
 
 
 class MIMEParser(object):
 
-    def __init__(self):
-        getcontext().prec = 3
+    def __init__(self, parm_val_lower=True):
+        self._parm_val_lower = parm_val_lower
+        getcontext().prec = 4
 
     def best_match(self, available_mtypes, header_mtypes):
         """
@@ -61,7 +62,7 @@ class MIMEParser(object):
 
         for mtype in available_mtypes:
             parsed_mtype = self.parse_mime(mtype)
-            fit_and_q = self.__fitness_and_quality(parsed_mtype, header_mtypes)
+            fit_and_q = self._fitness_and_quality(parsed_mtype, header_mtypes)
             weighted_matches.append((fit_and_q, pos, mtype))
             pos += 1
 
@@ -86,25 +87,31 @@ class MIMEParser(object):
         Decimal object.
         """
         parts = mtype.split(';')
-        params = {}
+        params = OrderedDict()
 
         # Split parameters and convert numeric values to a Decimal object.
         for k, v in [param.split('=', 1) for param in parts[1:]]:
             k = k.strip().lower()
-            v = v.strip().lower()
+            v = v.strip().strip('\'"')
+
+            if self._parm_val_lower:
+                v = v.lower()
 
             try:
                 v = Decimal(v)
             except InvalidOperation:
-                pass
+                if k == 'q':
+                    v = Decimal("1.0")
 
             params[k] = v
 
         # Add/fix quality values.
         quality = params.get('q')
 
-        if 'q' not in params or quality > Decimal(1) or quality < Decimal(0):
-            params['q'] = Decimal(1)
+        if ('q' not in params
+            or quality > Decimal("1.0")
+            or quality < Decimal("0.0")):
+            params['q'] = Decimal("1.0")
 
         full_type = parts[0].strip().lower()
 
@@ -123,22 +130,25 @@ class MIMEParser(object):
 
         return type.strip(), subtype.strip(), suffix, params
 
-    def __fitness_and_quality(self, preferred_mtype, ranges):
+    def _fitness_and_quality(self, available_mtype, header_mtypes):
         """
-        Find the best match for a pre-parsed preferred_mtype within
+        Find the best match for a pre-parsed header_mtype within
         pre-parsed ranges.
 
+        available_mtype - One Accept header value
+        header_mtypes   - Available mime types
+
         Returns a tuple of the fitness value and the value of the 'q'
-        (quality) parameter of the best match, or (-1, 0) if no match was
-        found.
+        (quality) parameter of the best match, or (-1, Decimal("0.0")) if
+        no match was found.
         """
         best_fit = -1
-        best_fit_q = 0
+        best_fit_q = Decimal("0.0")
         (target_type, target_subtype,
-         target_suffix, target_params) = preferred_mtype
+         target_suffix, target_params) = available_mtype
 
-        for type, subtype, suffix, params in ranges:
-            type_match = (type == target_type or type == '*'
+        for mtype, subtype, suffix, params in header_mtypes:
+            type_match = (mtype == target_type or mtype == '*'
                           or target_type == '*')
             subtype_match = (subtype == target_subtype or subtype == '*'
                              or target_subtype == '*')
@@ -146,17 +156,17 @@ class MIMEParser(object):
                             or not target_suffix)
 
             if type_match and subtype_match and suffix_match:
-                param_matches = sum(
-                    [1 for (key, value) in target_params.items()
-                     if key != 'q' and key in params
-                     and value == params[key]], 0)
-                fitness = 1000 if type == target_type else 0
+                fitness = 1000 if mtype == target_type else 0
                 fitness += 100 if subtype == target_subtype else 0
                 fitness += 10 if suffix == target_suffix else 0
+                param_matches = sum(
+                    [1 for key, value in target_params.items()
+                     if key != 'q' and key in params
+                     and value == params[key]], 0)
                 fitness += param_matches
 
                 if fitness > best_fit:
                     best_fit = fitness
-                    best_fit_q = params.get('q', 0)
+                    best_fit_q = str(params.get('q', 0))
 
         return best_fit, Decimal(best_fit_q)

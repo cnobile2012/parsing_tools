@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="urn:us:gov:treasury:irs:fatcaffilist"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:us:gov:treasury:irs:fatcaffilist"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            version="1.0">
+  <xsd:annotation>
+    <xsd:documentation>
+      <Component>
+        <DictionaryEntryNm>Components for IRS FFI List</DictionaryEntryNm>
+        <MajorVersionNum>1</MajorVersionNum>
+        <MinorVersionNum>0</MinorVersionNum>
+        <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+        <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+        <DescriptionTxt>Components for the list of registered and approved financial institutions under FATCA.</DescriptionTxt>
+      </Component>
+    </xsd:documentation>
+  </xsd:annotation>
+  <!-- ===== Element Declarations ===== -->
+  <xsd:element name="IRSFFIList" type="IRSFFIListType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <Component>
+          <DictionaryEntryNm>IRS FFI List</DictionaryEntryNm>
+          <MajorVersionNum>1</MajorVersionNum>
+          <MinorVersionNum>0</MinorVersionNum>
+          <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+          <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+          <DescriptionTxt>A list of registered and approved financial institutions under FATCA.</DescriptionTxt>
+        </Component>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="FinancialInstitution" type="FinancialInstitutionType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <Component>
+          <DictionaryEntryNm>Financial Institution</DictionaryEntryNm>
+          <MajorVersionNum>1</MajorVersionNum>
+          <MinorVersionNum>0</MinorVersionNum>
+          <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+          <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+          <DescriptionTxt>Registration details for financial institution. Financial institution identification number, legal name and country of residence for tax purposes. If financial institution is a branch, financial institution identification number, branch designation and location (country).</DescriptionTxt>
+        </Component>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="CountryNm" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <Component>
+          <DictionaryEntryNm>Country Name</DictionaryEntryNm>
+          <MajorVersionNum>1</MajorVersionNum>
+          <MinorVersionNum>0</MinorVersionNum>
+          <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+          <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+          <DescriptionTxt>Name of country or territory.</DescriptionTxt>
+        </Component>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="FINm" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <Component>
+          <DictionaryEntryNm>Financial Institution Name</DictionaryEntryNm>
+          <MajorVersionNum>1</MajorVersionNum>
+          <MinorVersionNum>0</MinorVersionNum>
+          <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+          <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+          <DescriptionTxt>A legal name of a financial institution or if the financial institution is a branch, the term "Branch".</DescriptionTxt>
+        </Component>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="GIIN" type="xsd:string">
+    <xsd:annotation>
+      <xsd:documentation>
+        <Component>
+          <DictionaryEntryNm>Global Intermediary Identification Number</DictionaryEntryNm>
+          <MajorVersionNum>1</MajorVersionNum>
+          <MinorVersionNum>0</MinorVersionNum>
+          <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+          <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+          <DescriptionTxt>An identification number assigned to financial institution by FATCA registration system.</DescriptionTxt>
+        </Component>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <!-- ===== Type Declarations ===== -->
+  <xsd:complexType name="FinancialInstitutionType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <Component>
+          <DictionaryEntryNm>Financial Institution Type</DictionaryEntryNm>
+          <MajorVersionNum>1</MajorVersionNum>
+          <MinorVersionNum>0</MinorVersionNum>
+          <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+          <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+          <DescriptionTxt>The type that wraps registration details for financial institution.</DescriptionTxt>
+        </Component>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="GIIN"/>
+      <xsd:element ref="FINm"/>
+      <xsd:element ref="CountryNm"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="IRSFFIListType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <Component>
+          <DictionaryEntryNm>IRS FFI List Type</DictionaryEntryNm>
+          <MajorVersionNum>1</MajorVersionNum>
+          <MinorVersionNum>0</MinorVersionNum>
+          <VersionEffectiveBeginDt>2013-04-08</VersionEffectiveBeginDt>
+          <VersionDescriptionTxt>Initial version</VersionDescriptionTxt>
+          <DescriptionTxt>A type for a list of registered and approved financial institutions under FATCA.</DescriptionTxt>
+        </Component>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="FinancialInstitution" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="version" type="xsd:string" fixed="1.0"/>
+  </xsd:complexType>
+</xsd:schema>
