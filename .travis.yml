@@ -9,7 +9,7 @@ python:
 sudo: false
 
 # Command to install dependencies
-install: "pip install --upgrade -r requirements.txt"
+install: "pip install --upgrade -r requirements.travis.txt"
 
 # run tests
 script:
