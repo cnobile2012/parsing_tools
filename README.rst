@@ -15,7 +15,7 @@ Parsing Tools
     :alt: Build Status
 
 .. image:: http://img.shields.io/coveralls/cnobile2012/parsing_tools/master.svg?branch=master
-    :target: https://coveralls.io/r/cnobile2012/parsing_tools?branch=master
+    :target: https://coveralls.io/github/cnobile2012/parsing_tools?branch=master
     :alt: Test Coverage
 
 .. image:: https://img.shields.io/pypi/dm/parsing_tools.svg
