@@ -7,4 +7,5 @@ defusedxml
 pytz
 six
 coverage
+python-coveralls
 nose
