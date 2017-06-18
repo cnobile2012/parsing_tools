@@ -14,7 +14,7 @@ Parsing Tools
     :target: https://travis-ci.org/cnobile2012/parsing_tools
     :alt: Build Status
 
-.. image:: http://img.shields.io/coveralls/cnobile2012/parsing_tools/master.svg?branch=master
+.. image:: https://coveralls.io/repos/github/cnobile2012/parsing_tools/badge.svg?branch=master
     :target: https://coveralls.io/github/cnobile2012/parsing_tools?branch=master
     :alt: Test Coverage
 
