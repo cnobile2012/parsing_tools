@@ -3,7 +3,9 @@
 .#*
 *#*#
 .DS_Store
-#*.txt
+*.txt
+!requirements/requirements.txt
+!requirements/travis.txt
 *.pdf
 .~lock.*
 logs/*.log*
