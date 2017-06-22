@@ -1,0 +1,10 @@
+# PIP requirements
+#
+# Base packages
+#
+
+defusedxml
+pytz
+six
+coverage
+nose

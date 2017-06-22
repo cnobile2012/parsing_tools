@@ -2,10 +2,7 @@
 #
 # $ pip install -r requirements/requirements.txt
 #
+# Include the bare minimum.
+-r base.txt
 
-defusedxml
 ipython
-pytz
-six
-coverage
-nose

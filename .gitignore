@@ -4,7 +4,8 @@
 *#*#
 .DS_Store
 *.txt
-!requirements/requirements.txt
+!requirements/base.txt
+!requirements/development.txt
 !requirements/travis.txt
 *.pdf
 .~lock.*

@@ -38,15 +38,7 @@ upload-test: clobber
 
 .PHONY	: install-dev
 install-dev:
-	pip install $(PIP_ARGS) -r requirements/requirements.txt
-
-.PHONY	: install-prd
-install-prd:
-	pip install $(PIP_ARGS) -r requirements/requirements.txt
-
-.PHONY	: install-stg
-install-stg:
-	pip install $(PIP_ARGS) -r requirements/requirements.txt
+	pip install $(PIP_ARGS) -r requirements/development.txt
 
 .PHONY	: coverage
 coverage: clean

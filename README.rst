@@ -28,7 +28,7 @@ This repository contains multiple small projects each of which can be used
 separately. There are, at this point, no dependencies between them.
 
 This would be a great package to use when creating your own custom Django
-REST Framework renderers and parsers based on a custom MIME types.
+REST Framework renderers and parsers based on custom MIME types.
 
 Current Projects
 ================
