@@ -90,6 +90,20 @@ class TestXML2Dict(unittest.TestCase):
                 'element').get('nspace')
             self.assertTrue(ns2 in found_ns2, msg)
 
+    #@unittest.skip("Temporarily skipped.")
+    def test_parse_strip_list(self):
+        """
+        Test that the list can be stripped from the underlying dict.
+        """
+        x2d = XML2Dict(strip_list=True)
+
+        with io.open('tests/simple.xml', 'r') as f:
+            # Test with file object
+            data = x2d.parse(f)
+            msg = "data: {}".format(data)
+            self.assertTrue(isinstance(data, dict), msg)
+            self.assertTrue(isinstance(data.get('attrib'), dict), msg)
+
 
 if __name__ == '__main__':
     unittest.main()

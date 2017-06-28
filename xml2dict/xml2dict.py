@@ -25,7 +25,7 @@ class XML2Dict(object):
     #__PREFIX_OBJ = re.compile(__PREFIX_REGEX)
 
     def __init__(self, empty_tags=True, rm_whitespace=True, logger_name='',
-                 level=None):
+                 level=None, strip_list=False):
         if logger_name == '':
             logging.basicConfig()
 
@@ -36,6 +36,7 @@ class XML2Dict(object):
 
         self.__empty_tags = empty_tags
         self.__rm_whitespace = rm_whitespace
+        self.__strip_list = strip_list
 
     def _set_file_object(self, xml):
         if isinstance(xml, io.IOBase):
@@ -56,6 +57,9 @@ class XML2Dict(object):
         except ET.ParseError as e:
             self._log.error("Could not parse xml, %s", e)
             raise e
+
+        if self.__strip_list and len(data) == 1:
+            data = data[0]
 
         self._log.debug("data: %s", data)
         return data
