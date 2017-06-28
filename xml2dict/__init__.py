@@ -18,8 +18,8 @@ from .xml2dict import XML2Dict
 
 __version_info__ = {
     'major': 1,
-    'minor': 1,
-    'patch': 1,
+    'minor': 2,
+    'patch': 0,
     'releaselevel': 'final',
     'serial': 1
     }
