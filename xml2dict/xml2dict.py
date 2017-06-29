@@ -55,7 +55,7 @@ class XML2Dict(object):
             root = tree.getroot()
             self.__node(data, root)
         except ET.ParseError as e:
-            self._log.error("Could not parse xml, %s", e)
+            self._log.error("Could not parse xml, %s", e, exc_info=True)
             raise e
 
         if self.__strip_list and len(data) == 1:

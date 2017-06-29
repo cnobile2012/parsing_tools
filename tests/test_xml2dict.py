@@ -13,6 +13,10 @@ from xml2dict import XML2Dict
 
 
 class TestXML2Dict(unittest.TestCase):
+    malformed_xml = '''<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  Missing end root tag.
+'''
 
     def __init__(self, name):
         super(TestXML2Dict, self).__init__(name)
@@ -103,6 +107,16 @@ class TestXML2Dict(unittest.TestCase):
             msg = "data: {}".format(data)
             self.assertTrue(isinstance(data, dict), msg)
             self.assertTrue(isinstance(data.get('attrib'), dict), msg)
+
+    #@unittest.skip("Temporarily skipped.")
+    def test_parse_exception(self):
+        """
+        Test that the list can be stripped from the underlying dict.
+        """
+        x2d = XML2Dict(strip_list=True)
+
+        with self.assertRaises(ET.ParseError) as cm:
+            data = x2d.parse(self.malformed_xml)
 
 
 if __name__ == '__main__':
