@@ -47,27 +47,34 @@ class MIMEParser(object):
         found. ie. Content-Type, Accept
 
         Examples:
-          >>> best_match(['text/html, application/xbel+xml'],
+          >>> best_match(['text/html', 'application/xbel+xml'],
                   'text/*;q=0.3, text/html;q=0.7, text/html;level=1,'
                   ' text/html;level=2;q=0.4, */*;q=0.5')
-          
+          'text/html'
+
           >>> best_match(['application/xbel+xml', 'text/xml'],
                          'text/*;q=0.5,*/*; q=0.1')
           'text/xml'
         """
+        weighted_matches = self._best_weighted_matches(available_mtypes,
+                                                       header_mtypes)
+        return weighted_matches[0][4]
+
+    def _best_weighted_matches(self, available_mtypes, header_mtypes):
         weighted_matches = []
-        pos = 0
         header_mtypes = [self.parse_mime(mt)
                          for mt in header_mtypes.split(',')]
 
-        for mtype in available_mtypes:
+        for pos, mtype in enumerate(available_mtypes):
             parsed_mtype = self.parse_mime(mtype)
             fit_and_q = self._fitness_and_quality(parsed_mtype, header_mtypes)
-            weighted_matches.append((fit_and_q, pos, mtype))
-            pos += 1
+            fit_and_q.append(pos)
+            fit_and_q.append(mtype)
+            weighted_matches.append(fit_and_q)
 
-        weighted_matches.sort()
-        return weighted_matches[-1][0][1] and weighted_matches[-1][2] or ''
+        weighted_matches.sort(reverse=True)
+        # [best_fit, best_params, best_fit_q, pos, mime]
+        return weighted_matches
 
     def parse_mime(self, mtype):
         """
@@ -135,8 +142,8 @@ class MIMEParser(object):
         Find the best match for a pre-parsed header_mtype within
         pre-parsed ranges.
 
-        available_mtype - One Accept header value
-        header_mtypes   - Available mime types
+        available_mtype - One of a list of available preparsed mimetypes.
+        header_mtypes   - Available preparsed mimetypes.
 
         Returns a tuple of the fitness value and the value of the 'q'
         (quality) parameter of the best match, or (-1, Decimal("0.0")) if
@@ -144,6 +151,7 @@ class MIMEParser(object):
         """
         best_fit = -1
         best_fit_q = Decimal("0.0")
+        best_params = 0
         (target_type, target_subtype,
          target_suffix, target_params) = available_mtype
 
@@ -152,21 +160,30 @@ class MIMEParser(object):
                           or target_type == '*')
             subtype_match = (subtype == target_subtype or subtype == '*'
                              or target_subtype == '*')
-            suffix_match = (suffix == target_suffix or suffix == ''
+            suffix_match = (suffix == target_suffix or not suffix
                             or not target_suffix)
+            fitness = 0
 
-            if type_match and subtype_match and suffix_match:
-                fitness = 1000 if mtype == target_type else 0
-                fitness += 100 if subtype == target_subtype else 0
-                fitness += 10 if suffix == target_suffix else 0
-                param_matches = sum(
-                    [1 for key, value in target_params.items()
-                     if key != 'q' and key in params
-                     and value == params[key]], 0)
-                fitness += param_matches
+            if mtype == target_type:
+                fitness += int(bin(4), 2)
 
-                if fitness > best_fit:
-                    best_fit = fitness
-                    best_fit_q = str(params.get('q', 0))
+            if subtype == target_subtype:
+                fitness += int(bin(2), 2)
 
-        return best_fit, Decimal(best_fit_q)
+            if suffix == target_suffix:
+                fitness += int(bin(1), 2)
+
+            # Give weight to a suffix equal to a subtype.
+            if suffix == target_subtype:
+                fitness += int(bin(2), 2)
+
+            best_params = sum(
+                [1 for key, value in target_params.items()
+                 if key != 'q' and key in params
+                 and value == params[key]], 0)
+
+            if fitness > best_fit:
+                best_fit = fitness
+                best_fit_q = params.get('q', Decimal("0"))
+
+        return [best_fit, best_params, best_fit_q]

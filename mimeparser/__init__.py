@@ -19,7 +19,7 @@ from .mimeparser import MIMEParser
 __version_info__ = {
     'major': 1,
     'minor': 1,
-    'patch': 1,
+    'patch': 2,
     'releaselevel': 'final',
     'serial': 1
     }
