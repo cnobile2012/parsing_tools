@@ -6,5 +6,4 @@
 defusedxml
 pytz
 six
-coverage
 nose

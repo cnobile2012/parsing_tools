@@ -5,4 +5,5 @@
 # Include the bare minimum.
 -r base.txt
 
-python-coveralls
+coverage
+coveralls

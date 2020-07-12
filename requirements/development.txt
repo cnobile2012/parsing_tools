@@ -6,3 +6,4 @@
 -r base.txt
 
 ipython
+coverage
