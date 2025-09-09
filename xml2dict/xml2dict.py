@@ -78,8 +78,10 @@ class XML2Dict(object):
                                  'value': self.__tag_value(text)}
         children_data = []
         child_data['children'] = children_data
+        has_findall = hasattr(node, 'findall')  # Only from 3.8 and greater.
+        children = node.findall("./*") if has_findall else node.getchildren()
 
-        for child in node.findall("./*"):
+        for child in children:
             self.__node(children_data, child)
 
     def __split_namespace(self, tag):
