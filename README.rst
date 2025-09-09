@@ -18,6 +18,10 @@ Parsing Tools
    :target: https://github.com/cnobile2012/parsing_tools/actions/workflows/main.yml
    :alt: Build Status
 
+.. image:: http://img.shields.io/pypi/wheel/parsing_tools.svg
+   :target: https://pypi.python.org/pypi/parsing_tools
+   :alt: PyPI Wheel
+
 .. image:: http://img.shields.io/coveralls/cnobile2012/parsing_tools/master.svg?branch=master&dummy=987654321
     :target: https://coveralls.io/github/cnobile2012/parsing_tools?branch=master
     :alt: Test Coverage
