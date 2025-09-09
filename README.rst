@@ -2,6 +2,10 @@
 Parsing Tools
 *************
 
+.. image:: https://img.shields.io/badge/license-MIT-green
+   :target: https://en.wikipedia.org/wiki/MIT_License
+   :alt: License
+
 .. image:: http://img.shields.io/pypi/v/parsing_tools.svg
     :target: https://pypi.python.org/pypi/parsing_tools
     :alt: PyPI Version
@@ -10,11 +14,11 @@ Parsing Tools
     :target: https://pypi.python.org/pypi/parsing_tools
     :alt: PY Versions
 
-.. image:: https://travis-ci.org/cnobile2012/parsing_tools.svg?branch=master
-    :target: https://travis-ci.org/cnobile2012/parsing_tools
-    :alt: Build Status
+.. image:: https://github.com/cnobile2012/parsing_tools/actions/workflows/main.yml/badge.svg?branch=master
+   :target: https://github.com/cnobile2012/parsing_tools/actions/workflows/main.yml
+   :alt: Build Status
 
-.. image:: http://img.shields.io/coveralls/cnobile2012/parsing_tools/master.svg?branch=master
+.. image:: http://img.shields.io/coveralls/cnobile2012/parsing_tools/master.svg?branch=master&dummy=987654321
     :target: https://coveralls.io/github/cnobile2012/parsing_tools?branch=master
     :alt: Test Coverage
 
