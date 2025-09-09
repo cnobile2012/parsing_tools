@@ -27,11 +27,10 @@ class TestXML2Dict(unittest.TestCase):
         Test that setting the logging level works.
         """
         level = logging.ERROR
-        x2d = XML2Dict(level=level)
+        XML2Dict(level=level)
 
-        with io.open('tests/FATCA-FFILIST-1.0.xsd', 'r') as f:
+        with io.open('tests/FATCA-FFILIST-1.0.xsd', 'r'):
             # Test with file object
-            data = x2d.parse(f)
             log = logging.getLogger()
             found_level = log.getEffectiveLevel()
             msg = "Found level: {}, should be: {}".format(found_level, level)
@@ -46,11 +45,11 @@ class TestXML2Dict(unittest.TestCase):
         x2d = XML2Dict()
 
         with self.assertRaises(ET.ParseError) as cm:
-            data = x2d.parse(bad_xml)
+            x2d.parse(bad_xml)
 
         error = "no element found: line 1, column 38"
         found_error = str(cm.exception)
-        msg = "Found error: {}, should be: ()".format(found_error, error)
+        msg = f"Found error: {found_error}, should be: {error}"
         self.assertTrue(error in found_error, msg)
 
     #@unittest.skip("Temporarily skipped.")
@@ -115,8 +114,8 @@ class TestXML2Dict(unittest.TestCase):
         """
         x2d = XML2Dict(strip_list=True)
 
-        with self.assertRaises(ET.ParseError) as cm:
-            data = x2d.parse(self.malformed_xml)
+        with self.assertRaises(ET.ParseError):
+            x2d.parse(self.malformed_xml)
 
 
 if __name__ == '__main__':

@@ -32,15 +32,16 @@ def _get_version(short=False):
     vers.append("{minor:d}".format(**__version_info__))
 
     if __version_info__.get('patch', 0):
-        vers.append("{patch:d}".format(**__version_info__)) # pragma: no cover
+        vers.append("{patch:d}".format(**__version_info__))  # pragma: no cover
 
     result = '.'.join(vers)
 
     if __version_info__.get('releaselevel') != 'final' and not short:
-        result += "{}{:d}".format( # pragma: no cover
+        result += "{}{:d}".format(  # pragma: no cover
             __version_info__.get('releaselevel', 'a')[0],
             __version_info__.get('serial'))
 
     return result
+
 
 __version__ = _get_version()

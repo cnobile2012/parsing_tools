@@ -1,4 +1,0 @@
-include LICENSE.txt
-include README.rst
-include include.mk
-recursive-include docs *

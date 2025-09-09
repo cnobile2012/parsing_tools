@@ -6,10 +6,10 @@ source =
 omit =
     *tests*
     *defusedxml*
-    *six*
-    *decimal.py
-    *numbers.py
-    *xml/etree*
+#    *six*
+#    *decimal.py
+#    *numbers.py
+#    *xml/etree*
 
 [report]
 show_missing = True
@@ -22,5 +22,8 @@ exclude_lines =
     pragma: no cover
 
 [html]
-title = Inventory Coverage Report
+title = Parsing Tools Coverage Report
 directory = docs/htmlcov
+
+[xml]
+output = docs/xmlcov/coverage.xml

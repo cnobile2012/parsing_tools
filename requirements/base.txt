@@ -4,6 +4,4 @@
 #
 
 defusedxml
-pytz
 six
-nose

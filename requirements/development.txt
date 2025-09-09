@@ -1,9 +1,14 @@
 # PIP requirements
 #
-# $ pip install -r requirements/requirements.txt
+# $ pip install -r requirements/development.txt
 #
 # Include the bare minimum.
 -r base.txt
 
 ipython
+pytest
 coverage
+flake8
+hatch
+hatchling
+tomlkit

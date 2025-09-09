@@ -1,0 +1,13 @@
+[flake8]
+exclude =
+    .git,
+    __pycache__,
+    old,
+    build,
+    dist
+    txt
+
+per-file-ignores =
+    mimeparser/mimeparser.py: E129
+    xml2dict/*: E129
+    tests/*: E265, E275, F401, E402

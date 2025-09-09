@@ -21,8 +21,8 @@ import defusedxml.ElementTree as ET
 class XML2Dict(object):
     __NSPACE_REGEX = r"^\{(?P<uri>.*)\}(?P<local>.*)$"
     __NSPACE_OBJ = re.compile(__NSPACE_REGEX)
-    #__PREFIX_REGEX = r"^(?P<xmlns>xmlns):?(?P<prefix>.*)?$"
-    #__PREFIX_OBJ = re.compile(__PREFIX_REGEX)
+    # __PREFIX_REGEX = r"^(?P<xmlns>xmlns):?(?P<prefix>.*)?$"
+    # __PREFIX_OBJ = re.compile(__PREFIX_REGEX)
 
     def __init__(self, empty_tags=True, rm_whitespace=True, logger_name='',
                  level=None, strip_list=False):
@@ -40,7 +40,7 @@ class XML2Dict(object):
 
     def _set_file_object(self, xml):
         if isinstance(xml, io.IOBase):
-            xml.seek(0) # Make sure we're at the start of the file.
+            xml.seek(0)  # Make sure we're at the start of the file.
             self._xml = xml
         else:
             self._xml = six.StringIO(xml)
@@ -72,14 +72,14 @@ class XML2Dict(object):
         nspace, name = self.__split_namespace(tag_name)
         text = self.value_hook(node.text)
         child_data['attrib'] = {k: self.value_hook(v)
-                                for k,v in node.attrib.items()}
+                                for k, v in node.attrib.items()}
         child_data['element'] = {'nspace': nspace,
                                  'tag': name,
                                  'value': self.__tag_value(text)}
         children_data = []
         child_data['children'] = children_data
 
-        for child in node.getchildren():
+        for child in node.findall("./*"):
             self.__node(children_data, child)
 
     def __split_namespace(self, tag):

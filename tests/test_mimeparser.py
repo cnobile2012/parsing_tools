@@ -115,7 +115,7 @@ class TestMIMEParser(unittest.TestCase):
         """
         Test that the correct mime type was found.
         """
-        available_mtypes = [ # Refers to mime types that your system supports
+        available_mtypes = [  # Refers to mime types that your system supports
             'text/html',
             'text/plain',
             'text/xml;ver=1;charset=utf-8',
@@ -123,7 +123,7 @@ class TestMIMEParser(unittest.TestCase):
             'application/json',
             'application/vnd.corp.project.endpoint+json',
             ]
-        header_mtypes = [ # Refers to mime types coming from an Accept header
+        header_mtypes = [  # Refers to mime types coming from an Accept header
             '*/html;q=.2',
             'text/*;q=.4',
             'text/xml;q=.8;ver=1',

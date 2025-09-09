@@ -156,12 +156,12 @@ class MIMEParser(object):
          target_suffix, target_params) = available_mtype
 
         for mtype, subtype, suffix, params in header_mtypes:
-            type_match = (mtype == target_type or mtype == '*'
-                          or target_type == '*')
-            subtype_match = (subtype == target_subtype or subtype == '*'
-                             or target_subtype == '*')
-            suffix_match = (suffix == target_suffix or not suffix
-                            or not target_suffix)
+            # type_match = (mtype == target_type or mtype == '*'
+            #               or target_type == '*')
+            # subtype_match = (subtype == target_subtype or subtype == '*'
+            #                  or target_subtype == '*')
+            # suffix_match = (suffix == target_suffix or not suffix
+            #                 or not target_suffix)
             fitness = 0
 
             if mtype == target_type:
